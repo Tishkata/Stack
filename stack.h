@@ -26,12 +26,12 @@ public:
 
 // the public methods
 public:
-    bool isEmpty();
+    bool isEmpty() const;
     void push(const T& data);
     void pop();
-    T& top();
-    size_t size();
-    void print();
+    T& top() const;
+    size_t size() const;
+    void print() const;
 
 // the private methods
 private:
@@ -102,7 +102,7 @@ Stack<T>::~Stack()
 }
 
 template <typename T>
-bool Stack<T>::isEmpty()
+bool Stack<T>::isEmpty() const
 {
     return this->m_size == 0;
 }
@@ -131,19 +131,19 @@ void Stack<T>::pop()
 }
 
 template <typename T>
-T& Stack<T>::top()
+T& Stack<T>::top() const
 {
     return this->m_top->data;
 }
 
 template <typename T>
-size_t Stack<T>::size()
+size_t Stack<T>::size() const
 {
     return this->m_size;
 }
 
 template <typename T>
-void Stack<T>::print()
+void Stack<T>::print() const
 {
     Node<T>* temp = m_top;
     while(temp)
