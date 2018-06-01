@@ -24,7 +24,8 @@ void decrypt(const char* filename)
                 break;
             }
 
-            input.push(symbol);
+            input.Push(symbol);
+//            input.push(' ');
         }
         else if(symbol == '*')
         {
@@ -32,8 +33,8 @@ void decrypt(const char* filename)
             {
                 break;
             }
-            cout << input.top();
-            input.pop();
+            cout << input.Top();
+            input.Pop();
         }
     }
 }
@@ -48,15 +49,15 @@ int main()
     Stack<int> myStack;
 
     /** adding elements into stack */
-    myStack.push(1);
-    myStack.push(2);
-    myStack.push(3);
-    myStack.push(4);
-    myStack.push(5);
+    myStack.Push(1);
+    myStack.Push(2);
+    myStack.Push(3);
+    myStack.Push(4);
+    myStack.Push(5);
 
     /** print stack */
     cout << "Stack elements: ";
-    myStack.print();
+    myStack.Print();
     cout << endl;
 
     /** Creating a new stack with the same values as the one above, in this case we call the Copy Constructor. */
@@ -64,7 +65,7 @@ int main()
 
     /** print copied stack */
     cout << "Copied stack elements: ";
-    copyStack.print();
+    copyStack.Print();
     cout << endl;
 
     /** Creating new stack with assignment operator, almost the same as the Copy Constructor */
@@ -72,16 +73,16 @@ int main()
 
     /** Print assignment stack */
     cout << "Assignment stack elements: ";
-    assignmentStack.print();
+    assignmentStack.Print();
     cout << endl;
 
     /** top element of stack */
-    cout << "Stack top element: " << assignmentStack.top() << endl;
+    cout << "Stack top element: " << assignmentStack.Top() << endl;
 
     /** remove element of stack, in this case we remove 5 */
-    assignmentStack.pop();
+    assignmentStack.Pop();
     cout << "New stack elements: ";
-    assignmentStack.print();
+    assignmentStack.Print();
     cout << endl;
 
     return 0;

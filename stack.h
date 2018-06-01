@@ -6,150 +6,150 @@
 
 using namespace std;
 
-template <typename T>
+template <class TYPE>
 struct Node
 {
-    T data;
-    Node<T>* previous;
-    Node(T _data, Node<T>* _previous = nullptr):data(_data), previous(_previous){}
+    TYPE m_data;
+    Node<TYPE>* m_previous;
+    Node(TYPE data, Node<TYPE>* previous = nullptr) : m_data(data), m_previous(previous){}
 };
 
-template <typename T>
+template <class TYPE>
 class Stack
 {
 // the public constructors and operators.
 public:
     Stack();
     Stack(const Stack& other);
-    Stack<T>& operator =(const Stack &other);
+    Stack<TYPE>& operator =(const Stack &other);
     ~Stack();
 
 // the public methods
 public:
-    bool isEmpty() const;
-    void push(const T& data);
-    void pop();
-    T& top() const;
-    size_t size() const;
-    void print() const;
+    bool IsEmpty() const;
+    void Push(const TYPE& data);
+    void Pop();
+    TYPE& Top() const;
+    size_t Size() const;
+    void Print() const;
 
 // the private methods
 private:
-    void destroy();
-    void copy(const Stack& other);
+    void Destroy();
+    void Copy(const Stack& other);
 
 // the private members
 private:
-    Node<T>* m_top;
+    Node<TYPE>* m_top;
     size_t m_size;
 
 };
 
-template <typename T>
-void Stack<T>::destroy()
+template <class TYPE>
+void Stack<TYPE>::Destroy()
 {
-    while(!isEmpty())
+    while(!IsEmpty())
     {
-        this->pop();
+        this->Pop();
     }
 }
 
-template <typename T>
-void Stack<T>::copy(const Stack& other)
+template <class TYPE>
+void Stack<TYPE>::Copy(const Stack& other)
 {
     m_size = other.m_size;
-    Node<T> *ours, *theirs;
-    m_top = new Node<T>(other.m_top->data);
+    Node<TYPE> *ours, *theirs;
+    m_top = new Node<TYPE>(other.m_top->m_data);
     ours = m_top;
-    theirs = other.m_top->previous;
+    theirs = other.m_top->m_previous;
     while(theirs)
     {
-        ours->previous = new Node<T>(theirs->data);
-        ours = ours->previous;
-        theirs = theirs->previous;
+        ours->m_previous = new Node<TYPE>(theirs->m_data);
+        ours = ours->m_previous;
+        theirs = theirs->m_previous;
     }
 }
 
-template <typename T>
-Stack<T>::Stack():m_top(nullptr), m_size(0)
+template <class TYPE>
+Stack<TYPE>::Stack() : m_top(nullptr), m_size(0)
 {
 
 }
 
-template <typename T>
-Stack<T>::Stack(const Stack& other)
+template <class TYPE>
+Stack<TYPE>::Stack(const Stack& other)
 {
     if(this != &other)
     {
-        copy(other);
+        Copy(other);
     }
 }
 
-template <typename T>
-Stack<T>& Stack<T>::operator =(const Stack& other)
+template <class TYPE>
+Stack<TYPE>& Stack<TYPE>::operator =(const Stack& other)
 {
     if(this != &other)
     {
-        copy(other);
+        Copy(other);
     }
     return* this;
 }
 
-template <typename T>
-Stack<T>::~Stack()
+template <class TYPE>
+Stack<TYPE>::~Stack()
 {
-    destroy();
+    Destroy();
 }
 
-template <typename T>
-bool Stack<T>::isEmpty() const
+template <class TYPE>
+bool Stack<TYPE>::IsEmpty() const
 {
     return this->m_size == 0;
 }
 
-template <typename T>
-void Stack<T>::push(const T& data)
+template <class TYPE>
+void Stack<TYPE>::Push(const TYPE& data)
 {
-    Node<T>* temp = new Node<T>(data);
-    temp->previous = this->m_top;
+    Node<TYPE>* temp = new Node<TYPE>(data);
+    temp->m_previous = this->m_top;
     this->m_top = temp;
     this->m_size++;
 }
 
-template <typename T>
-void Stack<T>::pop()
+template <class TYPE>
+void Stack<TYPE>::Pop()
 {
-    if(isEmpty())
+    if(IsEmpty())
     {
         return;
     }
-    Node<T>* temp;
+    Node<TYPE>* temp;
     temp = this->m_top;
-    this->m_top = this->m_top->previous;
+    this->m_top = this->m_top->m_previous;
     delete[] temp;
     this->m_size--;
 }
 
-template <typename T>
-T& Stack<T>::top() const
+template <class TYPE>
+TYPE& Stack<TYPE>::Top() const
 {
-    return this->m_top->data;
+    return this->m_top->m_data;
 }
 
-template <typename T>
-size_t Stack<T>::size() const
+template <class TYPE>
+size_t Stack<TYPE>::Size() const
 {
     return this->m_size;
 }
 
-template <typename T>
-void Stack<T>::print() const
+template <class TYPE>
+void Stack<TYPE>::Print() const
 {
-    Node<T>* temp = m_top;
+    Node<TYPE>* temp = m_top;
     while(temp)
     {
-        cout << temp->data << " ";
-        temp = temp->previous;
+        cout << temp->m_data << " ";
+        temp = temp->m_previous;
     }
 }
 
