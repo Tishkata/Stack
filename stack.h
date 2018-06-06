@@ -48,9 +48,9 @@ private:
 template <class TYPE>
 void Stack<TYPE>::Destroy()
 {
-    while(!IsEmpty())
+    while(IsEmpty() == false)
     {
-        this->Pop();
+        Pop();
     }
 }
 
@@ -92,6 +92,7 @@ Stack<TYPE>& Stack<TYPE>::operator =(const Stack& other)
     {
         Copy(other);
     }
+    
     return* this;
 }
 
@@ -119,15 +120,14 @@ void Stack<TYPE>::Push(const TYPE& data)
 template <class TYPE>
 void Stack<TYPE>::Pop()
 {
-    if(IsEmpty())
+    if(IsEmpty() == false)
     {
-        return;
+        Node<TYPE>* temp;
+        temp = this->m_top;
+        this->m_top = this->m_top->m_previous;
+        delete[] temp;
+        this->m_size--;
     }
-    Node<TYPE>* temp;
-    temp = this->m_top;
-    this->m_top = this->m_top->m_previous;
-    delete[] temp;
-    this->m_size--;
 }
 
 template <class TYPE>
@@ -146,7 +146,7 @@ template <class TYPE>
 void Stack<TYPE>::Print() const
 {
     Node<TYPE>* temp = m_top;
-    while(temp)
+    while(temp != nullptr)
     {
         cout << temp->m_data << " ";
         temp = temp->m_previous;
