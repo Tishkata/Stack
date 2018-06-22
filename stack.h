@@ -9,9 +9,12 @@ using namespace std;
 template <class TYPE>
 struct Node
 {
-    TYPE m_data;
-    Node<TYPE>* m_previous;
-    Node(TYPE data, Node<TYPE>* previous = nullptr) : m_data(data), m_previous(previous) {}
+    TYPE m_data; // data of Stack
+    Node<TYPE>* m_previous; // pointer pointing to previous Node of Stack
+    Node(TYPE data, Node<TYPE>* previous = nullptr) : m_data(data), m_previous(previous) // constructor
+    {
+
+    }
 };
 
 template <class TYPE>
@@ -49,7 +52,7 @@ private:
 
 // the private members
 private:
-    Node<TYPE>* m_top; // top of stack
+    Node<TYPE>* m_top; // pointer for top of stack
     size_t m_size; // size of stack
 };
 
