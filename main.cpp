@@ -4,11 +4,11 @@
 // Read from txt file and put every symbol in stack except *.
 void decrypt(const char* filename)
 {
-    ifstream ifs;
-    ifs.open(filename, ios::in);
+    std::ifstream ifs;
+    ifs.open(filename, std::ios::in);
     if(!ifs.is_open())
     {
-        cerr << "Could not open file." << endl;
+        std::cerr << "Could not open file." << std::endl;
         return;
     }
 
@@ -25,7 +25,6 @@ void decrypt(const char* filename)
             }
 
             input.push(symbol);
-//            input.push(' ');
         }
         else if(symbol == '*')
         {
@@ -33,7 +32,7 @@ void decrypt(const char* filename)
             {
                 break;
             }
-            cout << input.top();
+            std::cout << input.top();
             input.pop();
         }
     }
@@ -56,34 +55,34 @@ int main()
     myStack.push(5);
 
     /** print stack */
-    cout << "Stack elements: ";
+    std::cout << "Stack elements: ";
     myStack.print();
-    cout << endl;
+    std::cout << std::endl;
 
     /** Creating a new stack with the same values as the one above, in this case we call the Copy Constructor. */
     Stack<int> copyStack(myStack);
 
     /** print copied stack */
-    cout << "Copied stack elements: ";
+    std::cout << "Copied stack elements: ";
     copyStack.print();
-    cout << endl;
+    std::cout << std::endl;
 
     /** Creating new stack with assignment operator, almost the same as the Copy Constructor */
     Stack<int> assignmentStack = copyStack;
 
     /** Print assignment stack */
-    cout << "Assignment stack elements: ";
+    std::cout << "Assignment stack elements: ";
     assignmentStack.print();
-    cout << endl;
+    std::cout << std::endl;
 
     /** top element of stack */
-    cout << "Stack top element: " << assignmentStack.top() << endl;
+    std::cout << "Stack top element: " << assignmentStack.top() << std::endl;
 
     /** remove element of stack, in this case we remove 5 */
     assignmentStack.pop();
-    cout << "New stack elements: ";
+    std::cout << "New stack elements: ";
     assignmentStack.print();
-    cout << endl;
+    std::cout << std::endl;
 
     return 0;
 }

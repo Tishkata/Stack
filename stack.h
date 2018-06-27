@@ -4,8 +4,6 @@
 #include <iostream>
 #include <fstream>
 
-using namespace std;
-
 template <class TYPE>
 struct Node
 {
@@ -25,13 +23,13 @@ class Stack
 public:
     Stack(); // default constructor
     Stack(const Stack& other); // copy constructor
-    Stack<TYPE>& operator =(const Stack& other); // assignment operator
-    bool operator ==(const Stack& other); // returns true if two stacks are equal
-    bool operator !=(const Stack& other); // returns true if two stacks are different
-    bool operator <(const Stack& other); // returns true if first stack is smaller than second stack
-    bool operator >(const Stack& other); // returns true if first stack is bigger than second stack
-    bool operator <=(const Stack& other); // returns true if first stackis smaller than or equal to second stack
-    bool operator >=(const Stack& other); // returns true if first stack is bigger than or equal to second stack
+    Stack<TYPE>& operator =(const Stack& other) const; // assignment operator
+    bool operator ==(const Stack& other) const; // returns true if two stacks are equal
+    bool operator !=(const Stack& other) const; // returns true if two stacks are different
+    bool operator <(const Stack& other) const; // returns true if first stack is smaller than second stack
+    bool operator >(const Stack& other ) const; // returns true if first stack is bigger than second stack
+    bool operator <=(const Stack& other) const; // returns true if first stackis smaller than or equal to second stack
+    bool operator >=(const Stack& other) const; // returns true if first stack is bigger than or equal to second stack
     ~Stack(); // destructor
 
 // the public methods
@@ -52,7 +50,7 @@ private:
 
 // the private members
 private:
-    Node<TYPE>* m_top; // pointer for top of stack
+    Node<TYPE>* m_top; // top of stack
     size_t m_size; // size of stack
 };
 
@@ -72,7 +70,7 @@ Stack<TYPE>::Stack(const Stack& other)
 }
 
 template <class TYPE>
-Stack<TYPE>& Stack<TYPE>::operator =(const Stack& other)
+Stack<TYPE>& Stack<TYPE>::operator =(const Stack& other) const
 {
     if(this != &other)
     {
@@ -83,7 +81,7 @@ Stack<TYPE>& Stack<TYPE>::operator =(const Stack& other)
 }
 
 template <class TYPE>
-bool Stack<TYPE>::operator ==(const Stack& other)
+bool Stack<TYPE>::operator ==(const Stack& other) const
 {
     if(m_size == other.m_size)
     {
@@ -107,13 +105,13 @@ bool Stack<TYPE>::operator ==(const Stack& other)
 }
 
 template <class TYPE>
-bool Stack<TYPE>::operator !=(const Stack& other)
+bool Stack<TYPE>::operator !=(const Stack& other) const
 {
     return !(operator ==(other));
 }
 
 template <class TYPE>
-bool Stack<TYPE>::operator <(const Stack& other)
+bool Stack<TYPE>::operator <(const Stack& other) const
 {
     if(m_size < other.m_size)
     {
@@ -141,7 +139,7 @@ bool Stack<TYPE>::operator <(const Stack& other)
 }
 
 template <class TYPE>
-bool Stack<TYPE>::operator >(const Stack& other)
+bool Stack<TYPE>::operator >(const Stack& other) const
 {
     if(m_size > other.m_size)
     {
@@ -169,13 +167,13 @@ bool Stack<TYPE>::operator >(const Stack& other)
 }
 
 template <class TYPE>
-bool Stack<TYPE>::operator <=(const Stack& other)
+bool Stack<TYPE>::operator <=(const Stack& other) const
 {
     return !(operator >(other));
 }
 
 template <class TYPE>
-bool Stack<TYPE>::operator >=(const Stack& other)
+bool Stack<TYPE>::operator >=(const Stack& other) const
 {
     return !(operator <(other));
 }
@@ -245,7 +243,7 @@ void Stack<TYPE>::print() const
     Node<TYPE>* temp = m_top;
     while(temp != nullptr)
     {
-        cout << temp->m_data << " ";
+        std::cout << temp->m_data << " ";
         temp = temp->m_previous;
     }
 }
