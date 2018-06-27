@@ -23,7 +23,6 @@ void decrypt(const char* filename)
             {
                 break;
             }
-
             input.push(symbol);
         }
         else if(symbol == '*')
