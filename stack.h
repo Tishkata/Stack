@@ -27,7 +27,7 @@ public:
     bool operator ==(const Stack& other) const; // returns true if two stacks are equal
     bool operator !=(const Stack& other) const; // returns true if two stacks are different
     bool operator <(const Stack& other) const; // returns true if first stack is smaller than second stack
-    bool operator >(const Stack& other ) const; // returns true if first stack is bigger than second stack
+    bool operator >(const Stack& other) const; // returns true if first stack is bigger than second stack
     bool operator <=(const Stack& other) const; // returns true if first stackis smaller than or equal to second stack
     bool operator >=(const Stack& other) const; // returns true if first stack is bigger than or equal to second stack
     ~Stack(); // destructor
