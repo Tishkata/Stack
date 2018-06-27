@@ -76,7 +76,6 @@ Stack<TYPE>& Stack<TYPE>::operator =(const Stack& other) const
     {
         copy(other);
     }
-
     return* this;
 }
 
